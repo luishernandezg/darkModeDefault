@@ -7,7 +7,6 @@ const commonColor = {
   },
 };
 
-
 const light: CustomTheme = {
   dark: false,
   colors: {
@@ -27,7 +26,7 @@ const light: CustomTheme = {
   },
 };
 
-const dark = {
+const dark: CustomTheme = {
   dark: true,
   colors: {
     primary: 'rgb(255, 45, 85)',
@@ -45,6 +44,5 @@ const dark = {
     ...commonColor.colors,
   },
 };
-
 
 export default {light, dark};
