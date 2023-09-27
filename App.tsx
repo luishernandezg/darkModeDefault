@@ -24,7 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import AppContainer from './vendor/bundle/ruby/3.2.0/src/navigation/AppNavigation';
+import AppContainer from './src/navigation/AppNavigation';
 
 type SectionProps = PropsWithChildren<{
   title: string;
