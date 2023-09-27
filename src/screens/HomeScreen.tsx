@@ -5,19 +5,14 @@ import {CustomTheme} from '../theme/CustomTheme';
 import {PreferencesContext} from '../preferences/PreferencesContext';
 import {storage} from '../local-storage/LocalStorage';
 import {isDarkThemeKeyStore} from '../constants/Constants';
-import {useMMKVBoolean} from 'react-native-mmkv';
-import { useContext } from 'react';
-
+import {useContext} from 'react';
 
 const HomeScreen = () => {
   // realizamos una conversion de tipos dado que el Api de Navigation limita el thema a un objeto default
   //la conversion nos permite  recibir los atributos extra que definamos con el Type CustomTheme
   const colors = useTheme() as unknown as CustomTheme;
-  console.log('HOLAAAA');
   console.log(colors);
   const {toggleTheme, isThemeDark} = useContext(PreferencesContext);
-  const [isDarkThemeLocalStored, setIsDarkThemeLocalStored] =
-    useMMKVBoolean(isDarkThemeKeyStore);
 
   const toggle = (value: boolean) => {
     console.log(`New Value: ${value}`);
