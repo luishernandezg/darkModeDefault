@@ -6,6 +6,8 @@ import {PreferencesContext} from '../preferences/PreferencesContext';
 import {storage} from '../local-storage/LocalStorage';
 import {isDarkThemeKeyStore} from '../constants/Constants';
 import {useMMKVBoolean} from 'react-native-mmkv';
+import { useContext } from 'react';
+
 
 const HomeScreen = () => {
   // realizamos una conversion de tipos dado que el Api de Navigation limita el thema a un objeto default
@@ -13,7 +15,7 @@ const HomeScreen = () => {
   const colors = useTheme() as unknown as CustomTheme;
   console.log('HOLAAAA');
   console.log(colors);
-  const {toggleTheme, isThemeDark} = React.useContext(PreferencesContext);
+  const {toggleTheme, isThemeDark} = useContext(PreferencesContext);
   const [isDarkThemeLocalStored, setIsDarkThemeLocalStored] =
     useMMKVBoolean(isDarkThemeKeyStore);
 

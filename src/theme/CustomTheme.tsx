@@ -1,4 +1,4 @@
-import {NavigationContainer, Theme} from '@react-navigation/native';
+import {Theme} from '@react-navigation/native';
 
 type BrandTheme = {
   customColors: {
@@ -11,4 +11,6 @@ type BrandTheme = {
   };
 };
 
+// extendiendo un type, CustomTheme ahora esta conpuesto por las
+// propiedades de los types Theme y Brand Theme
 export type CustomTheme = Theme & BrandTheme;

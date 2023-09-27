@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import {useCallback, useState, useMemo} from 'react';
 import {useColorScheme} from 'react-native';
 
 import {Colors} from '../theme';
@@ -12,27 +12,27 @@ import {isDarkThemeKeyStore} from '../constants/Constants';
 const RootStack = createNativeStackNavigator();
 
 const AppContainer = () => {
-
-    // Logica para cargar la preferencia guardada en local
+  // Logica para cargar la preferencia guardada en local
   const initialThemeValue = () => {
     const storedValue = storage.getBoolean(isDarkThemeKeyStore);
     if (storedValue == undefined) {
-        // usa el API de reac native para recuperar el tema actual del dispositivo
-        // DOC LINK ->  https://reactnative.dev/docs/usecolorscheme
+      // usa el API de reac native para recuperar el tema actual del dispositivo
+      // DOC LINK ->  https://reactnative.dev/docs/usecolorscheme
       const currentTheme = useColorScheme();
       return currentTheme == 'dark';
     } else {
       return storedValue;
     }
   };
-  const [isThemeDark, setIsThemeDark] = React.useState(initialThemeValue);
 
-  const toggleTheme = React.useCallback(() => {
+  const [isThemeDark, setIsThemeDark] = useState(initialThemeValue);
+
+  const toggleTheme = useCallback(() => {
     return setIsThemeDark(!isThemeDark);
   }, [isThemeDark]);
 
-  // usamos prederencesContext para pasar data entre componentes sin usar props 
-  const preferences = React.useMemo(
+  // usamos preferencesContext para pasar data entre componentes sin usar props
+  const preferences = useMemo(
     () => ({
       toggleTheme,
       isThemeDark,
@@ -40,7 +40,7 @@ const AppContainer = () => {
     [toggleTheme, isThemeDark],
   );
 
-  return (         
+  return (
     <PreferencesContext.Provider value={preferences}>
       <NavigationContainer theme={isThemeDark ? Colors.dark : Colors.light}>
         <RootStack.Navigator screenOptions={{headerShown: false}}>
